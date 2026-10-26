@@ -34,7 +34,7 @@ export class TraceabilityLedger {
     if (this.lots.has(id)) throw new TraceabilityError("Lote já cadastrado");
     if (!validStates.has(state)) throw new TraceabilityError("Estado físico inválido");
     if (!validUnits.has(unit)) throw new TraceabilityError("Unidade inválida");
-    positive(initialQuantity, "Quantidade inicial");
+    if (initialQuantity !== 0) positive(initialQuantity, "Quantidade inicial");
     if (unit === "saca" && !Number.isInteger(initialQuantity)) throw new TraceabilityError("Sacas devem ser inteiras");
     const lot = { id, enterpriseId, state };
     this.lots.set(id, lot);
